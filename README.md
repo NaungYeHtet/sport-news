@@ -30,7 +30,7 @@ This starts PostgreSQL 16 on port **5433**.
 
 ```bash
 cd backend
-cp ../.env.example .env
+cp .env.example .env
 pnpm install
 npx prisma migrate dev
 pnpm start:dev
@@ -138,7 +138,7 @@ sport-news/
 | -------------- | ---------------------------- |
 | `DATABASE_URL` | PostgreSQL connection string |
 
-See `.env.example` for reference.
+See `backend/.env.example` for reference.
 
 ### Frontend (`.env.local`)
 
