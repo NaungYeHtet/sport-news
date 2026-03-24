@@ -2,6 +2,35 @@
 
 A full-stack sports news web application featuring a landing page with sports categories and a demo request form with full client and server-side validation.
 
+## Architecture Overview
+
+The project is structured as a **monorepo** with a clear separation between frontend and backend:
+
+- **Frontend:** Next.js 16 (App Router) with Tailwind CSS 4 for styling
+- **Backend:** NestJS 11 with Prisma ORM for database access
+- **Database:** PostgreSQL 16, managed via Docker Compose
+
+### Form Validation
+
+The demo request form implements **dual-layer validation**:
+- **Client-side:** Zod schemas with React Hook Form for immediate feedback
+- **Server-side:** class-validator DTOs for secure enforcement, including input trimming and email normalization
+
+### Security
+
+- **Helmet** for HTTP security headers
+- **Rate limiting** — 5 requests/min globally, 3 requests/min on the form endpoint
+- **CORS** restricted to allowed origins
+- **XSS prevention** through HTML tag stripping on all user inputs
+
+### Database
+
+Migrations are managed by Prisma, and a global exception filter ensures consistent structured error responses throughout the API.
+
+### AWS Deployment (Bonus)
+
+The AWS deployment with CI/CD pipeline was not included in this submission due to payment method limitations preventing AWS account setup. Happy to walk through the planned deployment approach if helpful.
+
 ## Tech Stack
 
 **Frontend:** Next.js 16, React 19, TypeScript, Tailwind CSS 4, React Hook Form, Zod
@@ -121,14 +150,6 @@ sport-news/
   "message": "Optional message"
 }
 ```
-
-## Security
-
-- **Helmet** for HTTP security headers
-- **Rate limiting** — 5 req/min globally, 3 req/min on `/demo-request`
-- **CORS** restricted to `localhost:3000`
-- **Input validation** on both client (Zod) and server (class-validator)
-- **HTML sanitization** on user inputs
 
 ## Environment Variables
 
