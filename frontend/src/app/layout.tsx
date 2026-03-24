@@ -1,0 +1,34 @@
+import type { Metadata } from "next";
+import { Geist, Dancing_Script } from "next/font/google";
+import "./globals.css";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const dancingScript = Dancing_Script({
+  variable: "--font-dancing-script",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
+
+export const metadata: Metadata = {
+  title: "Sport News",
+  description: "Your source for the latest sports news and updates",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${dancingScript.variable} antialiased`}
+    >
+      <body>{children}</body>
+    </html>
+  );
+}
